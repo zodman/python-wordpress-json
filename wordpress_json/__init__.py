@@ -264,7 +264,7 @@ class WordpressJsonWrapper(object):
         method, endpoint, params, data, json, headers = self._prepare_req(
             method_name, **kw
         )
-
+        files = kw.get("files", {})
         http_response = requests.request(
             method,
             self.site + endpoint,
@@ -272,9 +272,9 @@ class WordpressJsonWrapper(object):
             params=params,
             data=data,
             json=json,
-            headers=headers
+            headers=headers,
+            files=files
         )
-
         if http_response.status_code not in [200, 201]:
             if 'application/json' in http_response.headers.get('Content-Type'):
                 code = http_response.json().get('code')
