@@ -106,7 +106,7 @@ class WordpressJsonWrapper(object):
     def _build_endpoint(self, url_components, ids):
         """
         >>> wp = WordpressJsonWrapper(None, None, None)
-        >>> wp._build_endpoint(['posts'], {'post': 42})
+        p>>> wp._build_endpoint(['posts'], {'post': 42})
         '/posts/42'
         >>> wp._build_endpoint(['post'], {'post': 24})
         '/posts/24'
@@ -278,16 +278,18 @@ class WordpressJsonWrapper(object):
         if http_response.status_code not in [200, 201]:
             if 'application/json' in http_response.headers.get('Content-Type'):
                 code = http_response.json().get('code')
-                message = http_response.json().get('message')
+                message =u"%s" % http_response.json().get('message')
             else:
                 code = http_response.status_code
-                message = http_response.text
-            raise WordpressError(" ".join([
-                str(http_response.status_code),
-                str(http_response.reason),
-                ":",
-                '[{code}] {message}'.format(code=code, message=message)
-            ]))
+                message =u"%s" % http_response.text
+            e = u" ".join([
+                unicode(http_response.status_code),
+                unicode(http_response.reason),
+                u":",
+                u'[{code}] {message}'.format(code=code, message=message)
+            ])
+            print e
+            raise WordpressError(e.encode("utf-8"))
         elif 'application/json' in http_response.headers.get('Content-Type'):
             return http_response.json()
         else:
