@@ -78,8 +78,8 @@ Usage
 
     >>> posts[0].get('id')
     42
-    >>> wp.create_post(data={'title':'foobar'})
-
+    >>> wp.create_post(data=dict(title="foobar", content="content",excerpt="foobar")) 
+    {'id': .... }
     >>> wp.create_meta(post_id=42, data=dict(key='genre', value='fanciful'))
 
     >>> meta = wp.get_meta(post_id=42)
