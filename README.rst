@@ -33,21 +33,8 @@ Before being able to use this package make sure you configure Wordpress properly
 Wordpress configuration
 -----------------------
 
-1. You need to install the WP-API Plugin. To do so:
 
-   - Go to your Wordpress Dashboard
-   - Click on Plugins in the left sidebar
-   - Search for "REST API". Install the plugin named "WordPress REST API (Version 2)", by clicking on the "Install" button.
-   - Activate the plugin on the next screen.
-
-2. You need to install and activate the WP REST API Meta Endpoints plugin for the WP-API :
-
-   - Click on Plugins in the left sidebar
-   - Click on "Add New" on the top right, next to "Plugin"
-   - Search for "WP REST API Meta Endpoints". Install the plugin named "WP REST API Meta Endpoints", by clicking on the  "Install" button.
-   - Activate the plugin on the next screen.
-
-3. You need to install and activate the Basic-Auth plugin for the WP-API :
+1. You need to install and activate the Basic-Auth plugin for the WP-API :
 
    - download https://github.com/WP-API/Basic-Auth/archive/master.zip
    - Open your Wordpress Admin Dashboard

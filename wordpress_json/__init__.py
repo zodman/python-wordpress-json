@@ -43,6 +43,7 @@ component_conversions = {
     'status': 'statuses',
     'tag': 'tags',
     'type': 'types',
+    'media':'medias'
 }
 
 component_expansions = {

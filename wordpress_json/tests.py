@@ -9,6 +9,12 @@ def test_create_post():
     resp = wp.create_post(data=dict(title="foobar", content="content",excerpt="foobar"))    
     assert "id" in resp
 
+def test_create_meta():
+    wp = wordpress_json.WordpressJsonWrapper("http://192.168.99.100:8080/wp-json/wp/v2","root","root")
+    files = {'file': ("foo.jpg",None,'image/jpeg')}
+    resp = wp._request('create_media', files=files)  
+    assert "id" in resp
+
 
 if __name__ == '__main__':
     import nose
