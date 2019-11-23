@@ -68,3 +68,7 @@ target/
 .idea/python-wordpress-json.iml
 .idea/vcs.xml
 .idea/workspace.xml
+
+*~
+wp-content/
+.vscode/

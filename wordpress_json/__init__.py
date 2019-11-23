@@ -106,7 +106,7 @@ class WordpressJsonWrapper(object):
     def _build_endpoint(self, url_components, ids):
         """
         >>> wp = WordpressJsonWrapper(None, None, None)
-        p>>> wp._build_endpoint(['posts'], {'post': 42})
+        >>> wp._build_endpoint(['posts'], {'post': 42})
         '/posts/42'
         >>> wp._build_endpoint(['post'], {'post': 24})
         '/posts/24'
@@ -220,8 +220,7 @@ class WordpressJsonWrapper(object):
         ...     headers={'Content-Type': 'some/mime'},
         ...     data='image_data'
         ... )
-        ('POST', '/media', {}, 'image_data', None, \
-{'Content-Type': 'some/mime'})
+        ('POST', '/media', {}, 'image_data', None, {'Content-Type': 'some/mime'})
         """
         assert len(method_name.split('_')) > 1
         method = self._determine_method(method_name.split('_')[0])
@@ -283,12 +282,12 @@ class WordpressJsonWrapper(object):
                 code = http_response.status_code
                 message =u"%s" % http_response.text
             e = u" ".join([
-                unicode(http_response.status_code),
-                unicode(http_response.reason),
+                str(http_response.status_code),
+                str(http_response.reason),
                 u":",
                 u'[{code}] {message}'.format(code=code, message=message)
             ])
-            print e
+            print(e)
             raise WordpressError(e.encode("utf-8"))
         elif 'application/json' in http_response.headers.get('Content-Type'):
             return http_response.json()
