@@ -15,9 +15,12 @@ Wordpress JSON API (WP-API).
 
 import requests
 import six
+import logging
+
+log = logging.getLogger()
 
 __version__ = '0.2.4',
-__author__ = 'Raul Taranu, Dimitar Roustchev'
+__author__ = 'Raul Taranu, Dimitar Roustchev, Andres Vargas - zodman'
 
 methods = {
     'get': 'GET',
@@ -173,6 +176,8 @@ class WordpressJsonWrapper(object):
         ('POST', '/posts/7', {}, None, {'foo': 'bar'}, {})
         >>> wp._prepare_req('create_post', data={'foo': 'bar'})
         ('POST', '/posts', {}, None, {'foo': 'bar'}, {})
+        >>> wp._prepare_req('create_post', data={'foo': 'bar'})
+        ('POST', '/posts', {}, None, {'foo': 'bar'}, {})
         >>> wp._prepare_req('delete_post', post_id=8)
         ('DELETE', '/posts/8', {}, None, {}, {})
         >>> wp._prepare_req('get_post_revisions', post_id=9)
@@ -260,6 +265,7 @@ class WordpressJsonWrapper(object):
                 headers)
 
     def _request(self, method_name, **kw):
+        log.info((method_name, kw))
         method, endpoint, params, data, json, headers = self._prepare_req(
             method_name, **kw
         )
@@ -274,6 +280,7 @@ class WordpressJsonWrapper(object):
             headers=headers,
             files=files
         )
+        log.info(f"{method} {params} {data} {json}")
         if http_response.status_code not in [200, 201]:
             if 'application/json' in http_response.headers.get('Content-Type'):
                 code = http_response.json().get('code')

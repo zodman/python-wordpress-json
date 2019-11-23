@@ -78,6 +78,7 @@ Usage
 
     >>> posts[0].get('id')
     42
+    >>> wp.create_post(data={'title':'foobar'})
 
     >>> wp.create_meta(post_id=42, data=dict(key='genre', value='fanciful'))
 
