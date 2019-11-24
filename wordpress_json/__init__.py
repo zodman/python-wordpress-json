@@ -43,7 +43,7 @@ component_conversions = {
     'status': 'statuses',
     'tag': 'tags',
     'type': 'types',
-    'media':'medias'
+    #'media':'medias'
 }
 
 component_expansions = {
@@ -295,7 +295,8 @@ class WordpressJsonWrapper(object):
                 u":",
                 u'[{code}] {message}'.format(code=code, message=message)
             ])
-            print(e)
+            log.error(e)
+            log.error(http_response.content)
             raise WordpressError(e.encode("utf-8"))
         elif 'application/json' in http_response.headers.get('Content-Type'):
             return http_response.json()

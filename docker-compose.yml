@@ -4,13 +4,12 @@ services:
     image: wordpress:latest
     container_name: wordpress
     restart: always
-    #volumes:
-    #  - ./wp-content:/var/www/html/wp-content
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_NAME: wpdb
       WORDPRESS_DB_USER: user
       WORDPRESS_DB_PASSWORD: password
+      WP_DEBUG: 1
     ports:
       - 8080:80
       - 443:443
