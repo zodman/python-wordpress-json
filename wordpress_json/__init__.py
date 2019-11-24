@@ -281,7 +281,7 @@ class WordpressJsonWrapper(object):
             headers=headers,
             files=files
         )
-        log.info(f"{method} {params} {data} {json}")
+        log.info("{method} {params} {data} {json}".format(locals()))
         if http_response.status_code not in [200, 201]:
             if 'application/json' in http_response.headers.get('Content-Type'):
                 code = http_response.json().get('code')
